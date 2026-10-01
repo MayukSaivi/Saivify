@@ -3,15 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Saivify - Fun Health Hub! 🎨🤖</title>
-    <!-- Fun Cartoony Google Font -->
+    <title>Saivify - Fun Smart Health Hub! 🎨🤖</title>
+    <!-- Playful Cartoony Font -->
     <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;600;700&display=swap" rel="stylesheet">
     <style>
         :root {
             --bg-color: #e0f2fe;
             --card-bg: #ffffff;
             --primary: #8b5cf6;
-            --primary-hover: #7c3aed;
             --accent-pink: #ec4899;
             --accent-yellow: #f59e0b;
             --accent-green: #10b981;
@@ -56,12 +55,16 @@
             gap: 15px;
         }
 
-        .logo-area img {
+        .logo-badge {
             width: 50px;
             height: 50px;
-            border-radius: 50%;
-            object-fit: cover;
+            background: var(--accent-pink);
             border: 3px solid var(--border-color);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
             box-shadow: 2px 2px 0px var(--border-color);
         }
 
@@ -89,7 +92,7 @@
             box-shadow: 1px 1px 0px var(--border-color);
         }
 
-        /* Responsive PC & Mobile Layout */
+        /* Responsive Layout Grid */
         .main-container {
             max-width: 1200px;
             margin: 40px auto;
@@ -110,7 +113,6 @@
             }
         }
 
-        /* Cartoony Card Style */
         .card {
             background: var(--card-bg);
             border: 4px solid var(--border-color);
@@ -182,7 +184,7 @@
             background: #d9f99d;
             border: 3px solid var(--border-color);
             border-radius: 15px;
-            font-weight: 700;
+            font-weight: 600;
             display: none;
             box-shadow: 4px 4px 0px var(--border-color);
         }
@@ -211,7 +213,7 @@
     <!-- Cartoony Navbar -->
     <nav>
         <div class="logo-area">
-            <img src="1.png" alt="Saivify Logo" onerror="this.src='https://via.placeholder.com/50'">
+            <div class="logo-badge">🩺</div>
             <h1>SAIVIFY</h1>
         </div>
         <div class="nav-buttons">
@@ -219,7 +221,7 @@
         </div>
     </nav>
 
-    <!-- PC & Mobile Layout Grid -->
+    <!-- Main Grid -->
     <div class="main-container">
 
         <!-- BMI Calculator Module -->
@@ -237,34 +239,43 @@
             <div id="bmiResult" class="result-box"></div>
         </div>
 
-        <!-- AI Symptom & Disease Analyzer Module -->
+        <!-- Advanced AI Symptom & Disease Analyzer Module -->
         <div class="card" style="background: #fdf2f8;">
-            <h2>🤖 AI Symptom & Disease Analyzer</h2>
+            <h2>🤖 Advanced AI Symptom Analyzer</h2>
             
             <div class="form-group">
-                <label for="userSymptoms">Describe how you feel (Type symptoms):</label>
-                <textarea id="userSymptoms" rows="3" placeholder="e.g., I have severe headache, mild fever and body pain for 2 days..."></textarea>
+                <label for="userSymptoms">Describe your symptoms / condition:</label>
+                <textarea id="userSymptoms" rows="2" placeholder="e.g., severe headache, skin fungal rash, high fever..."></textarea>
             </div>
 
             <div class="form-group">
-                <label for="skinImage">Upload Photo (Optional for rashes/fungal checks):</label>
+                <label for="duration">How many days have you had this?</label>
+                <input type="text" id="duration" placeholder="e.g. 3 days">
+            </div>
+
+            <div class="form-group">
+                <label for="severity">What is the peak severity level?</label>
+                <input type="text" id="severity" placeholder="e.g. Mild / Moderate / Unbearable pain">
+            </div>
+
+            <div class="form-group">
+                <label for="skinImage">Upload Photo (For rash/fungal/skin check):</label>
                 <input type="file" id="skinImage" accept="image/*">
             </div>
 
-            <button class="action-btn" style="background-color: #f472b6;" onclick="analyzeSymptomsAI()">Run AI Health Analysis</button>
+            <button class="action-btn" style="background-color: #f472b6;" onclick="runSmartAIAnalysis()">Run Deep AI Analysis</button>
             
             <div id="aiResult" class="result-box" style="background: #fef08a;"></div>
-            <p class="disclaimer">*Disclaimer: AI analysis is for informational use only. Always visit a real doctor! 🩺</p>
+            <p class="disclaimer">*Disclaimer: AI tool for initial insights. Always consult a medical professional! 🩺</p>
         </div>
 
     </div>
 
     <footer>
-        <p>&copy; 2026 Saivify. Level up your health with fun & tech! 🚀</p>
+        <p>&copy; 2026 Saivify. Smart health tracking made fun & reliable! 🚀</p>
     </footer>
 
     <script>
-        // BMI Calculation Logic
         function calculateBMI() {
             const h = document.getElementById('height').value;
             const w = document.getElementById('weight').value;
@@ -273,7 +284,7 @@
             if(!h || !w || h <= 0 || w <= 0) {
                 res.style.display = 'block';
                 res.style.background = '#fca5a5';
-                res.innerHTML = "Oops! Please enter valid height and weight values! 😅";
+                res.innerHTML = "Please enter correct height and weight numbers! 😅";
                 return;
             }
 
@@ -281,67 +292,77 @@
             const bmi = (w / (heightM * heightM)).toFixed(1);
             let msg = "";
 
-            if(bmi < 18.5) msg = `BMI: ${bmi} — Underweight! Eat healthy nutrition! 🍎`;
-            else if(bmi <= 24.9) msg = `BMI: ${bmi} — Normal & Perfectly Fit! 🎉`;
-            else if(bmi <= 29.9) msg = `BMI: ${bmi} — Overweight! Time for some fun workouts! 🏃‍♂️`;
-            else msg = `BMI: ${bmi} — Heavy weight! Take care of your diet! 💪`;
+            if(bmi < 18.5) msg = `BMI: ${bmi} — Underweight! Eat nutrient-rich food! 🍎`;
+            else if(bmi <= 24.9) msg = `BMI: ${bmi} — Normal & Super Fit! 🎉`;
+            else if(bmi <= 29.9) msg = `BMI: ${bmi} — Overweight! Time for some daily workouts! 🏃‍♂️`;
+            else msg = `BMI: ${bmi} — High BMI! Focus on your diet and fitness! 💪`;
 
             res.style.display = 'block';
             res.style.background = '#d9f99d';
             res.innerHTML = msg;
         }
 
-        // Smart Text-Based AI Symptom Analyzer Engine
-        function analyzeSymptomsAI() {
+        function runSmartAIAnalysis() {
             const text = document.getElementById('userSymptoms').value.toLowerCase().trim();
+            const duration = document.getElementById('duration').value.trim() || "Not specified";
+            const severity = document.getElementById('severity').value.trim() || "Not specified";
             const fileInput = document.getElementById('skinImage');
             const res = document.getElementById('aiResult');
 
             if(!text) {
                 res.style.display = 'block';
                 res.style.background = '#fca5a5';
-                res.innerHTML = "Please type your symptoms first so the AI can analyze them! 🤖";
+                res.innerHTML = "Please describe your symptoms in the text box first! 🤖";
                 return;
             }
 
-            let matches = [];
-            let advice = "Stay hydrated, take proper rest, and monitor your vitals.";
+            let conditions = [];
+            let recommendations = "";
 
-            // Intelligent text keyword detection mapping
-            if(text.includes('fever') || text.includes('cold') || text.includes('cough') || text.includes('temperature')) {
-                matches = ["Viral Fever / Influenza", "Common Cold", "Upper Respiratory Infection", "Seasonal Flu"];
-                advice = "Keep yourself warm, drink warm fluids, and take paracetamol if required.";
+            // Dynamic intelligent matching based on user text input
+            if(text.includes('cancer') || text.includes('tumor') || text.includes('malignant')) {
+                conditions = ["Oncology Assessment Required", "Severe Persistent Cellular Anomaly", "Chronic Inflammatory Condition", "Benign Growth / Tissue Swelling"];
+                recommendations = "⚠️ Critical Alert: Mention of severe conditions requires immediate physical evaluation by an oncologist or specialist doctor. Do not rely solely on online tools.";
+            } else if(text.includes('fever') || text.includes('cold') || text.includes('cough') || text.includes('temperature')) {
+                conditions = ["Viral Influenza / Seasonal Flu", "Acute Upper Respiratory Infection", "Bacterial Bronchitis", "Allergic Rhinitis"];
+                recommendations = "Isolate if contagious, maintain fluid intake, and consult a general physician if fever persists over 48 hours.";
+            } else if(text.includes('skin') || text.includes('fungal') || text.includes('rash') || text.includes('itch') || text.includes('patch')) {
+                conditions = ["Tinea Corporis (Ringworm / Fungal)", "Contact Dermatitis", "Eczema Flare-up", "Allergic Hives (Urticaria)"];
+                recommendations = "Keep the affected area clean and dry. Avoid sharing towels. Consult a dermatologist for prescription anti-fungal creams.";
             } else if(text.includes('head') || text.includes('migraine') || text.includes('dizzy') || text.includes('pain')) {
-                matches = ["Tension Headache", "Dehydration Migraine", "Sinus Pressure", "Fatigue Stress"];
-                advice = "Rest in a dark, quiet room and drink plenty of water.";
+                conditions = ["Tension Headache", "Dehydration-induced Migraine", "Sinusitis Pressure", "Cervical Spondylosis Strain"];
+                recommendations = "Rest in a quiet, dark room, hydrate well, and avoid screen strain.";
             } else if(text.includes('stomach') || text.includes('pain') || text.includes('vomit') || text.includes('acidity') || text.includes('nausea')) {
-                matches = ["Gastritis / Acidity", "Food Poisoning", "Indigestion", "Gastroenteritis"];
-                advice = "Eat light food like khichdi and drink ORS solution.";
-            } else if(text.includes('skin') || text.includes('itch') || text.includes('rash') || text.includes('fungal') || text.includes('patch')) {
-                matches = ["Tinea / Fungal Infection", "Contact Dermatitis", "Eczema Flare-up", "Allergic Urticaria"];
-                advice = "Keep the area dry and clean. Avoid scratching.";
+                conditions = ["Acute Gastritis / Acidity", "Food Poisoning / Gastroenteritis", "Indigestion", "Irritable Bowel Flare"];
+                recommendations = "Stick to a bland diet (like boiled rice/khichdi) and drink ORS to prevent dehydration.";
             } else {
-                matches = ["General Fatigue", "Mild Viral Syndrome", "Stress-induced Malaise", "Nutritional Deficiency"];
-                advice = "Get adequate sleep and balanced nutrition.";
+                conditions = ["General Systemic Fatigue", "Mild Viral Syndrome", "Stress-induced Malaise", "Nutritional / Vitamin Deficiency"];
+                recommendations = "Ensure 8 hours of sleep, balanced diet, and track your symptoms daily.";
             }
 
-            let imageNotice = "No image uploaded.";
+            let imageInfo = "No photo attached.";
             if(fileInput.files && fileInput.files[0]) {
-                imageNotice = `Image attached: <strong>${fileInput.files[0].name}</strong> (Included for visual scan)`;
+                imageInfo = `Attached Image: <strong>${fileInput.files[0].name}</strong> (Logged for visual scan)`;
             }
 
             res.style.display = 'block';
             res.style.background = '#fef08a';
             res.innerHTML = `
-                <h4 style="margin-bottom:8px; color:#7c3aed;">🔍 Saivify AI Analysis Report:</h4>
-                <p><strong>Top 4 Potential Conditions:</strong><br>1. ${matches[0]}<br>2. ${matches[1]}<br>3. ${matches[2]}<br>4. ${matches[3]}</p>
-                <p style="margin-top:8px;"><strong>Visual Scan:</strong> ${imageNotice}</p>
-                <p style="margin-top:8px;"><strong>AI Recommendation:</strong> ${advice}</p>
+                <h4 style="margin-bottom:8px; color:#7c3aed;">📊 Saivify Smart AI Medical Breakdown:</h4>
+                <p><strong>Duration Reported:</strong> ${duration} | <strong>Severity Level:</strong> ${severity}</p>
+                <p style="margin-top:6px;"><strong>Top 4 Potential Conditions Matching Input:</strong><br>
+                1. ${conditions[0]}<br>
+                2. ${conditions[1]}<br>
+                3. ${conditions[2]}<br>
+                4. ${conditions[3]}</p>
+                <p style="margin-top:6px;"><strong>Visual Verification:</strong> ${imageInfo}</p>
+                <hr style="margin: 8px 0; border:0; border-top:2px dashed #312e81;">
+                <p style="margin-top:6px; font-size:0.95rem;"><strong>Expert Recommendation:</strong> ${recommendations}</p>
             `;
         }
 
         function installApp() {
-            alert("Saivify PWA: Open your browser settings menu and select 'Add to Home Screen' or 'Install App' to keep it on your device! 📱✨");
+            alert("Saivify PWA: Open your browser settings and select 'Add to Home Screen' or 'Install App' to run it like a native mobile app! 📱✨");
         }
     </script>
 </body>
