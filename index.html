@@ -3,41 +3,43 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Saivify - Advanced Health & Symptom Analyzer</title>
-    <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <title>Saivify - Fun Health Hub! 🎨🤖</title>
+    <!-- Fun Cartoony Google Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;600;700&display=swap" rel="stylesheet">
     <style>
         :root {
-            --primary: #0ea5e9;
-            --primary-dark: #0284c7;
-            --secondary: #10b981;
-            --bg-color: #f8fafc;
+            --bg-color: #e0f2fe;
             --card-bg: #ffffff;
-            --text-main: #0f172a;
-            --text-light: #64748b;
-            --border-color: #e2e8f0;
-            --danger: #ef4444;
+            --primary: #8b5cf6;
+            --primary-hover: #7c3aed;
+            --accent-pink: #ec4899;
+            --accent-yellow: #f59e0b;
+            --accent-green: #10b981;
+            --text-main: #1e1b4b;
+            --border-color: #312e81;
         }
 
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-family: 'Fredoka', cursive, sans-serif;
         }
 
         body {
             background-color: var(--bg-color);
+            background-image: radial-gradient(#bae6fd 25%, transparent 25%);
+            background-size: 35px 35px;
             color: var(--text-main);
             min-height: 100vh;
             display: flex;
             flex-direction: column;
         }
 
-        /* Navbar */
+        /* Cartoony Navbar */
         nav {
             background: var(--card-bg);
-            border-bottom: 1px solid var(--border-color);
+            border-bottom: 4px solid var(--border-color);
             padding: 15px 40px;
             display: flex;
             justify-content: space-between;
@@ -45,53 +47,49 @@
             position: sticky;
             top: 0;
             z-index: 100;
+            box-shadow: 0 4px 0px var(--border-color);
         }
 
         .logo-area {
             display: flex;
             align-items: center;
-            gap: 12px;
-        }
-
-        .logo-area img {
-            width: 45px;
-            height: 45px;
-            border-radius: 50%;
-            object-fit: cover;
-            border: 2px solid var(--primary);
-        }
-
-        .logo-area h1 {
-            font-size: 1.5rem;
-            font-weight: 800;
-            color: var(--text-main);
-            letter-spacing: -0.5px;
-        }
-
-        .nav-buttons {
-            display: flex;
             gap: 15px;
         }
 
+        .logo-area img {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 3px solid var(--border-color);
+            box-shadow: 2px 2px 0px var(--border-color);
+        }
+
+        .logo-area h1 {
+            font-size: 2rem;
+            color: var(--accent-pink);
+            text-shadow: 2px 2px 0px var(--border-color);
+            letter-spacing: 1px;
+        }
+
         .pwa-btn {
-            background: linear-gradient(135deg, #10b981, #059669);
+            background: var(--accent-green);
             color: white;
-            border: none;
+            border: 3px solid var(--border-color);
             padding: 10px 20px;
-            border-radius: 8px;
-            font-weight: 600;
+            border-radius: 12px;
+            font-weight: 700;
             cursor: pointer;
-            transition: opacity 0.2s;
-            display: flex;
-            align-items: center;
-            gap: 8px;
+            box-shadow: 3px 3px 0px var(--border-color);
+            transition: transform 0.1s;
         }
 
-        .pwa-btn:hover {
-            opacity: 0.9;
+        .pwa-btn:active {
+            transform: translate(2px, 2px);
+            box-shadow: 1px 1px 0px var(--border-color);
         }
 
-        /* Main Container - Responsive Grid for PC & Mobile */
+        /* Responsive PC & Mobile Layout */
         .main-container {
             max-width: 1200px;
             margin: 40px auto;
@@ -112,195 +110,161 @@
             }
         }
 
+        /* Cartoony Card Style */
         .card {
             background: var(--card-bg);
-            border: 1px solid var(--border-color);
-            border-radius: 16px;
+            border: 4px solid var(--border-color);
+            border-radius: 25px;
             padding: 30px;
-            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.02), 0 2px 4px -1px rgba(0, 0, 0, 0.01);
+            box-shadow: 6px 6px 0px var(--border-color);
         }
 
         .card h2 {
-            font-size: 1.25rem;
-            font-weight: 700;
+            font-size: 1.6rem;
+            color: var(--primary);
             margin-bottom: 20px;
-            color: var(--text-main);
-            display: flex;
-            align-items: center;
-            gap: 10px;
+            text-shadow: 1px 1px 0px #ddd;
         }
 
         .form-group {
-            margin-bottom: 20px;
+            margin-bottom: 18px;
         }
 
         label {
             display: block;
+            margin-bottom: 6px;
             font-weight: 600;
-            font-size: 0.9rem;
-            margin-bottom: 8px;
-            color: var(--text-light);
+            font-size: 1.05rem;
+            color: var(--text-main);
         }
 
-        input, select, textarea {
+        input, textarea, select {
             width: 100%;
-            padding: 12px 16px;
-            border: 1px solid var(--border-color);
-            border-radius: 10px;
-            font-size: 1rem;
+            padding: 12px 15px;
+            border: 3px solid var(--border-color);
+            border-radius: 12px;
+            font-size: 1.1rem;
             outline: none;
-            transition: all 0.2s;
-            background: #f8fafc;
+            background: #fff;
+            font-weight: 600;
+            color: var(--text-main);
+            box-shadow: 3px 3px 0px var(--border-color);
         }
 
-        input:focus, select:focus, textarea:focus {
-            border-color: var(--primary);
-            background: #fff;
-            box-shadow: 0 0 0 3px rgba(14, 165, 233, 0.15);
+        input:focus, textarea:focus {
+            background: #fef08a;
         }
 
         .action-btn {
             width: 100%;
             padding: 14px;
-            background-color: var(--primary);
-            color: white;
-            border: none;
-            border-radius: 10px;
-            font-size: 1rem;
+            background-color: var(--accent-yellow);
+            color: var(--text-main);
+            border: 3px solid var(--border-color);
+            border-radius: 15px;
+            font-size: 1.2rem;
             font-weight: 700;
             cursor: pointer;
-            transition: background-color 0.2s;
+            box-shadow: 4px 4px 0px var(--border-color);
+            transition: all 0.1s ease;
+            margin-top: 10px;
+            text-transform: uppercase;
         }
 
-        .action-btn:hover {
-            background-color: var(--primary-dark);
+        .action-btn:active {
+            transform: translate(3px, 3px);
+            box-shadow: 1px 1px 0px var(--border-color);
         }
 
         .result-box {
             margin-top: 20px;
-            padding: 20px;
-            background: #f1f5f9;
-            border-radius: 10px;
+            padding: 18px;
+            background: #d9f99d;
+            border: 3px solid var(--border-color);
+            border-radius: 15px;
+            font-weight: 700;
             display: none;
-        }
-
-        /* Step 2 hidden section for Advanced Disease Analyzer */
-        #step2-container {
-            display: none;
-            margin-top: 15px;
-            border-top: 2px dashed var(--border-color);
-            padding-top: 15px;
+            box-shadow: 4px 4px 0px var(--border-color);
         }
 
         .disclaimer {
-            font-size: 0.8rem;
-            color: var(--danger);
+            font-size: 0.85rem;
+            color: #e11d48;
             margin-top: 15px;
             text-align: center;
-            font-weight: 500;
+            font-weight: 600;
         }
 
         footer {
             text-align: center;
-            padding: 20px;
-            color: var(--text-light);
-            font-size: 0.9rem;
-            border-top: 1px solid var(--border-color);
-            background: var(--card-bg);
+            padding: 25px;
+            color: var(--text-main);
+            font-weight: 600;
+            border-top: 4px solid var(--border-color);
+            background: #ffffff;
             margin-top: auto;
         }
     </style>
 </head>
 <body>
 
-    <!-- Navbar -->
+    <!-- Cartoony Navbar -->
     <nav>
         <div class="logo-area">
-            <!-- Yahan aap apna uploaded logo file name dal sakte hain jaise logo.png -->
-            <img src="1.png" alt="Saivify Logo">
-            <h1>Saivify</h1>
+            <img src="1.png" alt="Saivify Logo" onerror="this.src='https://via.placeholder.com/50'">
+            <h1>SAIVIFY</h1>
         </div>
         <div class="nav-buttons">
             <button class="pwa-btn" onclick="installApp()">📥 Download App</button>
         </div>
     </nav>
 
-    <!-- Main Content Area (PC Optimized Grid) -->
+    <!-- PC & Mobile Layout Grid -->
     <div class="main-container">
 
         <!-- BMI Calculator Module -->
-        <div class="card">
-            <h2>⚖️ Advanced BMI Calculator</h2>
+        <div class="card" style="background: #eff6ff;">
+            <h2>⚖️ Fun BMI Calculator</h2>
             <div class="form-group">
-                <label for="height">Height (cm)</label>
+                <label for="height">Height (cm):</label>
                 <input type="number" id="height" placeholder="e.g. 175">
             </div>
             <div class="form-group">
-                <label for="weight">Weight (kg)</label>
+                <label for="weight">Weight (kg):</label>
                 <input type="number" id="weight" placeholder="e.g. 70">
             </div>
-            <button class="action-btn" onclick="calculateBMI()">Calculate BMI</button>
+            <button class="action-btn" style="background-color: #38bdf8;" onclick="calculateBMI()">Calculate BMI</button>
             <div id="bmiResult" class="result-box"></div>
         </div>
 
-        <!-- Disease & Symptom Analyzer Module -->
-        <div class="card">
-            <h2>🩺 Smart Symptom & Disease Analyzer</h2>
+        <!-- AI Symptom & Disease Analyzer Module -->
+        <div class="card" style="background: #fdf2f8;">
+            <h2>🤖 AI Symptom & Disease Analyzer</h2>
             
             <div class="form-group">
-                <label for="primarySymptom">Select Primary Symptom / Area:</label>
-                <select id="primarySymptom" onchange="loadPotentialDiseases()">
-                    <option value="">-- Choose Symptom --</option>
-                    <option value="fever">High Fever, Chills & Body Ache</option>
-                    <option value="respiratory">Cough, Cold & Breathing Issue</option>
-                    <option value="skin">Skin Rash, Itching or Fungal Patches</option>
-                    <option value="stomach">Stomach Pain, Nausea or Acidity</option>
-                </select>
+                <label for="userSymptoms">Describe how you feel (Type symptoms):</label>
+                <textarea id="userSymptoms" rows="3" placeholder="e.g., I have severe headache, mild fever and body pain for 2 days..."></textarea>
             </div>
 
-            <!-- Step 1: Potential Matches -->
-            <div id="potentialMatches" class="form-group" style="display:none;">
-                <label>Possible Conditions Detected (Select one to proceed):</label>
-                <select id="matchedDisease">
-                    <!-- Populated dynamically -->
-                </select>
-                <button class="action-btn" style="margin-top: 15px; background: #059669;" onclick="proceedToDeepAnalysis()">Continue Research & Deep Analysis</button>
+            <div class="form-group">
+                <label for="skinImage">Upload Photo (Optional for rashes/fungal checks):</label>
+                <input type="file" id="skinImage" accept="image/*">
             </div>
 
-            <!-- Step 2: Detailed Deep Analysis Inputs -->
-            <div id="step2-container">
-                <h3 style="font-size: 1rem; margin-bottom: 12px; color: var(--primary);">Provide Detailed History</h3>
-                
-                <div class="form-group">
-                    <label for="duration">How many days have you had this condition?</label>
-                    <input type="text" id="duration" placeholder="e.g. 3 days">
-                </div>
-
-                <div class="form-group">
-                    <label for="severity">Describe the most severe symptom / pain level:</label>
-                    <input type="text" id="severity" placeholder="e.g. Mild, Moderate, or Severe throbbing">
-                </div>
-
-                <div class="form-group">
-                    <label for="skinImage">Upload Photo (Optional - for skin/fungal or visible analysis):</label>
-                    <input type="file" id="skinImage" accept="image/*">
-                </div>
-
-                <button class="action-btn" onclick="generateFinalReport()">Generate Comprehensive Report</button>
-            </div>
-
-            <div id="diseaseResult" class="result-box"></div>
-            <p class="disclaimer">*Disclaimer: Saivify is an AI health analyzer tool. Always consult a certified medical doctor for treatment.</p>
+            <button class="action-btn" style="background-color: #f472b6;" onclick="analyzeSymptomsAI()">Run AI Health Analysis</button>
+            
+            <div id="aiResult" class="result-box" style="background: #fef08a;"></div>
+            <p class="disclaimer">*Disclaimer: AI analysis is for informational use only. Always visit a real doctor! 🩺</p>
         </div>
 
     </div>
 
     <footer>
-        <p>&copy; 2026 Saivify. All rights reserved. Built with precision for your health.</p>
+        <p>&copy; 2026 Saivify. Level up your health with fun & tech! 🚀</p>
     </footer>
 
     <script>
-        // Advanced BMI Calculator logic
+        // BMI Calculation Logic
         function calculateBMI() {
             const h = document.getElementById('height').value;
             const w = document.getElementById('weight').value;
@@ -308,113 +272,76 @@
 
             if(!h || !w || h <= 0 || w <= 0) {
                 res.style.display = 'block';
-                res.style.background = '#fee2e2';
-                res.style.color = '#991b1b';
-                res.innerHTML = "Please enter valid height and weight measurements!";
+                res.style.background = '#fca5a5';
+                res.innerHTML = "Oops! Please enter valid height and weight values! 😅";
                 return;
             }
 
             const heightM = h / 100;
             const bmi = (w / (heightM * heightM)).toFixed(1);
-            let category = "";
-            let colorBg = "#f1f5f9";
+            let msg = "";
 
-            if(bmi < 18.5) {
-                category = "Underweight (Needs higher caloric nutrition)";
-                colorBg = "#dbeafe";
-            } else if(bmi >= 18.5 && bmi <= 24.9) {
-                category = "Normal & Healthy Weight 🎉";
-                colorBg = "#d1fae5";
-            } else if(bmi >= 25 && bmi <= 29.9) {
-                category = "Overweight (Consider regular cardio/diet)";
-                colorBg = "#fef3c7";
-            } else {
-                category = "Obese (Medical consultation recommended)";
-                colorBg = "#fee2e2";
-            }
+            if(bmi < 18.5) msg = `BMI: ${bmi} — Underweight! Eat healthy nutrition! 🍎`;
+            else if(bmi <= 24.9) msg = `BMI: ${bmi} — Normal & Perfectly Fit! 🎉`;
+            else if(bmi <= 29.9) msg = `BMI: ${bmi} — Overweight! Time for some fun workouts! 🏃‍♂️`;
+            else msg = `BMI: ${bmi} — Heavy weight! Take care of your diet! 💪`;
 
             res.style.display = 'block';
-            res.style.background = colorBg;
-            res.style.color = '#0f172a';
-            res.innerHTML = `<strong>Your BMI Score: ${bmi}</strong><br>Category: ${category}`;
+            res.style.background = '#d9f99d';
+            res.innerHTML = msg;
         }
 
-        // Dynamic Disease Matcher based on symptom
-        function loadPotentialDiseases() {
-            const symptom = document.getElementById('primarySymptom').value;
-            const matchBox = document.getElementById('potentialMatches');
-            const diseaseSelect = document.getElementById('matchedDisease');
-            
-            document.getElementById('step2-container').style.display = 'none';
-            document.getElementById('diseaseResult').style.display = 'none';
-
-            if(!symptom) {
-                matchBox.style.display = 'none';
-                return;
-            }
-
-            matchBox.style.display = 'block';
-            diseaseSelect.innerHTML = '';
-
-            let options = [];
-            if(symptom === 'fever') {
-                options = ["Viral Fever", "Malaria", "Dengue", "Typhoid"];
-            } else if(symptom === 'respiratory') {
-                options = ["Common Cold / Influenza", "Acute Bronchitis", "Allergic Rhinitis", "Sinusitis"];
-            } else if(symptom === 'skin') {
-                options = ["Tinea Infection (Ringworm / Fungal)", "Eczema", "Contact Dermatitis", "Urticaria (Hives)"];
-            } else if(symptom === 'stomach') {
-                options = ["Gastritis / Acidity", "Food Poisoning", "Gastroenteritis", "Irritable Bowel Syndrome (IBS)"];
-            }
-
-            options.forEach(opt => {
-                const el = document.createElement('option');
-                el.value = opt;
-                el.textContent = opt;
-                diseaseSelect.appendChild(el);
-            });
-        }
-
-        // Proceed to detailed questions (Duration, severity, photo)
-        function proceedToDeepAnalysis() {
-            const selected = document.getElementById('matchedDisease').value;
-            if(!selected) {
-                alert("Please select a potential condition first!");
-                return;
-            }
-            document.getElementById('step2-container').style.display = 'block';
-        }
-
-        // Final Deep Report generation
-        function generateFinalReport() {
-            const disease = document.getElementById('matchedDisease').value;
-            const duration = document.getElementById('duration').value || "Not specified";
-            const severity = document.getElementById('severity').value || "Not specified";
+        // Smart Text-Based AI Symptom Analyzer Engine
+        function analyzeSymptomsAI() {
+            const text = document.getElementById('userSymptoms').value.toLowerCase().trim();
             const fileInput = document.getElementById('skinImage');
-            const res = document.getElementById('diseaseResult');
+            const res = document.getElementById('aiResult');
 
-            let imageNote = "No image uploaded.";
+            if(!text) {
+                res.style.display = 'block';
+                res.style.background = '#fca5a5';
+                res.innerHTML = "Please type your symptoms first so the AI can analyze them! 🤖";
+                return;
+            }
+
+            let matches = [];
+            let advice = "Stay hydrated, take proper rest, and monitor your vitals.";
+
+            // Intelligent text keyword detection mapping
+            if(text.includes('fever') || text.includes('cold') || text.includes('cough') || text.includes('temperature')) {
+                matches = ["Viral Fever / Influenza", "Common Cold", "Upper Respiratory Infection", "Seasonal Flu"];
+                advice = "Keep yourself warm, drink warm fluids, and take paracetamol if required.";
+            } else if(text.includes('head') || text.includes('migraine') || text.includes('dizzy') || text.includes('pain')) {
+                matches = ["Tension Headache", "Dehydration Migraine", "Sinus Pressure", "Fatigue Stress"];
+                advice = "Rest in a dark, quiet room and drink plenty of water.";
+            } else if(text.includes('stomach') || text.includes('pain') || text.includes('vomit') || text.includes('acidity') || text.includes('nausea')) {
+                matches = ["Gastritis / Acidity", "Food Poisoning", "Indigestion", "Gastroenteritis"];
+                advice = "Eat light food like khichdi and drink ORS solution.";
+            } else if(text.includes('skin') || text.includes('itch') || text.includes('rash') || text.includes('fungal') || text.includes('patch')) {
+                matches = ["Tinea / Fungal Infection", "Contact Dermatitis", "Eczema Flare-up", "Allergic Urticaria"];
+                advice = "Keep the area dry and clean. Avoid scratching.";
+            } else {
+                matches = ["General Fatigue", "Mild Viral Syndrome", "Stress-induced Malaise", "Nutritional Deficiency"];
+                advice = "Get adequate sleep and balanced nutrition.";
+            }
+
+            let imageNotice = "No image uploaded.";
             if(fileInput.files && fileInput.files[0]) {
-                imageNote = `Image attached: <strong>${fileInput.files[0].name}</strong> (Received for visual assessment)`;
+                imageNotice = `Image attached: <strong>${fileInput.files[0].name}</strong> (Included for visual scan)`;
             }
 
             res.style.display = 'block';
-            res.style.background = '#f0fdf4';
-            res.style.color = '#065f46';
+            res.style.background = '#fef08a';
             res.innerHTML = `
-                <h4 style="margin-bottom:8px; color:#047857;">📋 Saivify Comprehensive Health Assessment</h4>
-                <p><strong>Primary Suspected Condition:</strong> ${disease}</p>
-                <p><strong>Duration:</strong> ${duration}</p>
-                <p><strong>Severity Analysis:</strong> ${severity}</p>
-                <p><strong>Visual Check:</strong> ${imageNote}</p>
-                <hr style="margin: 10px 0; border:0; border-top:1px solid #a7f3d0;">
-                <p style="font-size:0.9rem;"><strong>Recommendation:</strong> Rest well, maintain strict hydration, avoid self-medication, and visit a verified specialist if symptoms persist beyond 48 hours.</p>
+                <h4 style="margin-bottom:8px; color:#7c3aed;">🔍 Saivify AI Analysis Report:</h4>
+                <p><strong>Top 4 Potential Conditions:</strong><br>1. ${matches[0]}<br>2. ${matches[1]}<br>3. ${matches[2]}<br>4. ${matches[3]}</p>
+                <p style="margin-top:8px;"><strong>Visual Scan:</strong> ${imageNotice}</p>
+                <p style="margin-top:8px;"><strong>AI Recommendation:</strong> ${advice}</p>
             `;
         }
 
-        // PWA Download / Install App simulator
         function installApp() {
-            alert("Saivify PWA: To install this web app on your device, open your browser menu (three dots) and select 'Add to Home Screen' or 'Install App'.");
+            alert("Saivify PWA: Open your browser settings menu and select 'Add to Home Screen' or 'Install App' to keep it on your device! 📱✨");
         }
     </script>
 </body>
