@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Saivify - Fun Health Zone! 🎨</title>
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-color: #e0f2fe;
+            --card-bg: #ffffff;
+            --primary: #8b5cf6;
+            --primary-hover: #7c3aed;
+            --accent-pink: #ec4899;
+            --accent-yellow: #f59e0b;
+            --accent-green: #10b981;
+            --text-main: #1e1b4b;
+            --border-color: #312e81;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Fredoka', cursive, sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            background-image: radial-gradient(#bae6fd 20%, transparent 20%);
+            background-size: 30px 30px;
+            color: var(--text-main);
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 600px;
+            background: var(--card-bg);
+            border: 4px solid var(--border-color);
+            border-radius: 30px;
+            padding: 30px;
+            box-shadow: 8px 8px 0px var(--border-color);
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        header h1 {
+            font-size: 3rem;
+            color: var(--accent-pink);
+            text-shadow: 3px 3px 0px var(--border-color);
+            letter-spacing: 2px;
+            margin-bottom: 5px;
+        }
+
+        header p {
+            font-size: 1.2rem;
+            color: var(--accent-yellow);
+            font-weight: 600;
+            text-shadow: 1px 1px 0px var(--border-color);
+        }
+
+        .section-box {
+            background: #fdf4ff;
+            border: 3px solid var(--border-color);
+            border-radius: 20px;
+            padding: 20px;
+            margin-bottom: 25px;
+            box-shadow: 5px 5px 0px var(--border-color);
+        }
+
+        .section-box h2 {
+            font-size: 1.5rem;
+            color: var(--primary);
+            margin-bottom: 15px;
+            text-align: center;
+        }
+
+        .input-group {
+            margin-bottom: 15px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: 600;
+            font-size: 1rem;
+            color: var(--text-main);
+        }
+
+        input, select {
+            width: 100%;
+            padding: 12px 15px;
+            border: 3px solid var(--border-color);
+            border-radius: 12px;
+            font-size: 1.1rem;
+            outline: none;
+            background: #fff;
+            font-weight: 600;
+            color: var(--text-main);
+            box-shadow: 3px 3px 0px var(--border-color);
+        }
+
+        input:focus, select:focus {
+            background: #fef08a;
+        }
+
+        button {
+            width: 100%;
+            padding: 14px;
+            background-color: var(--accent-green);
+            color: white;
+            border: 3px solid var(--border-color);
+            border-radius: 15px;
+            font-size: 1.2rem;
+            font-weight: 700;
+            cursor: pointer;
+            box-shadow: 4px 4px 0px var(--border-color);
+            transition: all 0.1s ease;
+            margin-top: 10px;
+            text-transform: uppercase;
+        }
+
+        button:active {
+            transform: translate(3px, 3px);
+            box-shadow: 1px 1px 0px var(--border-color);
+        }
+
+        .result {
+            margin-top: 15px;
+            padding: 15px;
+            background: #d9f99d;
+            border: 3px solid var(--border-color);
+            border-radius: 12px;
+            font-weight: 700;
+            text-align: center;
+            font-size: 1.1rem;
+            display: none;
+            box-shadow: 3px 3px 0px var(--border-color);
+        }
+
+        .disclaimer {
+            font-size: 0.85rem;
+            color: #e11d48;
+            margin-top: 10px;
+            text-align: center;
+            font-weight: 600;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <header>
+            <h1>SAIVIFY</h1>
+            <p>🌟 Fun Health & Fitness Zone! 🚀</p>
+        </header>
+
+        <!-- BMI Calculator Section -->
+        <div class="section-box" style="background: #eff6ff;">
+            <h2>⚖️ Cute BMI Calculator</h2>
+            <div class="input-group">
+                <label for="height">Height (cm):</label>
+                <input type="number" id="height" placeholder="Jaise: 170">
+            </div>
+            <div class="input-group">
+                <label for="weight">Weight (kg):</label>
+                <input type="number" id="weight" placeholder="Jaise: 65">
+            </div>
+            <button onclick="calculateBMI()" style="background-color: #38bdf8;">Calculate Now!</button>
+            <div id="bmiResult" class="result"></div>
+        </div>
+
+        <!-- Disease Finder Section -->
+        <div class="section-box" style="background: #fdf2f8;">
+            <h2>🩺 Symptom / Disease Finder</h2>
+            <div class="input-group">
+                <label for="symptom">Apna main problem chuniye:</label>
+                <select id="symptom">
+                    <option value="">-- Select Problem --</option>
+                    <option value="fever">Tez Bukhar aur Thand 🤒</option>
+                    <option value="headache">Sir Dard ya Chakkar 🤕</option>
+                    <option value="cough">Khansi aur Gale mein kharash 😷</option>
+                    <option value="stomach">Pet Dard ya Ulti 🤢</option>
+                </select>
+            </div>
+            <button onclick="findDisease()" style="background-color: #f472b6;">Check Solution!</button>
+            <div id="diseaseResult" class="result" style="background: #fef08a;"></div>
+            <p class="disclaimer">*Note: Yeh sirf fun ke liye hai, serious hone par doctor ke paas jayein! 👨‍⚕️</p>
+        </div>
+    </div>
+
+    <script>
+        function calculateBMI() {
+            const h = document.getElementById('height').value;
+            const w = document.getElementById('weight').value;
+            const res = document.getElementById('bmiResult');
+
+            if(!h || !w || h <= 0 || w <= 0) {
+                res.style.display = 'block';
+                res.style.background = '#fca5a5';
+                res.innerHTML = "Oops! Sahi height aur weight daalo na! 😅";
+                return;
+            }
+
+            const bmi = (w / ((h/100) * (h/100))).toFixed(1);
+            let msg = "";
+
+            if(bmi < 18.5) msg = `BMI: ${bmi} — Underweight! Thoda aur khao-piyo! 🍎`;
+            else if(bmi <= 24.9) msg = `BMI: ${bmi} — Ekdum Fit & Fabulous! 🎉`;
+            else if(bmi <= 29.9) msg = `BMI: ${bmi} — Overweight! Thodi exercise karo! 🏃‍♂️`;
+            else msg = `BMI: ${bmi} — Heavy weight! Health par dhyan do! 💪`;
+
+            res.style.display = 'block';
+            res.style.background = '#d9f99d';
+            res.innerHTML = msg;
+        }
+
+        function findDisease() {
+            const s = document.getElementById('symptom').value;
+            const res = document.getElementById('diseaseResult');
+
+            if(!s) {
+                res.style.display = 'block';
+                res.style.background = '#fca5a5';
+                res.innerHTML = "Pehle koi option toh select karo! 🙃";
+                return;
+            }
+
+            let text = "";
+            if(s === 'fever') text = "Possibility: Viral/Fever! Garam paani piyo aur kambal odh kar so jao! 🛌";
+            else if(s === 'headache') text = "Possibility: Stress ya Dehydration! Thoda shanti se rest karo. 🧘‍♂️";
+            else if(s === 'cough') text = "Possibility: Cold/Infection! Adrak wali chai aur garare try karo! 🍵";
+            else if(s === 'stomach') text = "Possibility: Food issues! Halki khichdi khao aur ORS piyo. 🥣";
+
+            res.style.display = 'block';
+            res.style.background = '#fef08a';
+            res.innerHTML = text;
+        }
+    </script>
+</body>
+</html>
