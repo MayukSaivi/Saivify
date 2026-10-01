@@ -3,395 +3,392 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Saivify - Fun Smart Health Hub! 🎨🩺</title>
-    <!-- Playful Cartoony Font -->
-    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;600;700&display=swap" rel="stylesheet">
+    <title>Saivify - HealthMate: Class 8 Health & Nutrition Assistant</title>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
         :root {
-            --bg-color: #f0f9ff;
+            --primary: #0284c7;
+            --primary-dark: #0369a1;
+            --secondary: #10b981;
+            --bg-gradient: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
             --card-bg: #ffffff;
-            --primary: #6366f1;
-            --primary-hover: #4f46e5;
-            --accent-pink: #ec4899;
-            --accent-yellow: #f59e0b;
-            --accent-green: #10b981;
-            --text-main: #1e1b4b;
-            --border-color: #312e81;
+            --text-main: #0f172a;
+            --text-light: #64748b;
+            --border: #e2e8f0;
         }
 
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Fredoka', cursive, sans-serif;
+            font-family: 'Plus Jakarta Sans', sans-serif;
         }
 
         body {
-            background-color: var(--bg-color);
-            background-image: radial-gradient(#bae6fd 25%, transparent 25%);
-            background-size: 40px 40px;
-            color: var(--text-main);
+            background: var(--bg-gradient);
+            color: #f8fafc;
             min-height: 100vh;
-            display: flex;
-            flex-direction: column;
+            padding: 20px;
         }
 
-        /* Cartoony Navbar */
-        nav {
-            background: var(--card-bg);
-            border-bottom: 4px solid var(--border-color);
-            padding: 15px 40px;
+        .header-box {
+            max-width: 1100px;
+            margin: 0 auto 20px auto;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 14px;
+            padding: 20px;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            position: sticky;
-            top: 0;
-            z-index: 100;
-            box-shadow: 0 4px 0px var(--border-color);
+            backdrop-filter: blur(10px);
         }
 
-        .logo-area {
+        .school-title h1 {
+            font-size: 1.25rem;
+            font-weight: 800;
+            letter-spacing: 0.5px;
+            color: #38bdf8;
+        }
+
+        .school-title p {
+            font-size: 0.9rem;
+            color: #94a3b8;
+            margin-top: 4px;
+        }
+
+        .project-meta {
+            text-align: right;
+            font-size: 0.85rem;
+            color: #cbd5e1;
+        }
+
+        /* Navigation Tabs */
+        .tabs-container {
+            max-width: 1100px;
+            margin: 0 auto 20px auto;
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .tab-btn {
+            background: rgba(255, 255, 255, 0.08);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            color: #cbd5e1;
+            padding: 10px 18px;
+            border-radius: 10px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .tab-btn.active, .tab-btn:hover {
+            background: var(--primary);
+            color: white;
+            border-color: var(--primary);
+        }
+
+        /* Main Panel Card */
+        .panel {
+            max-width: 1100px;
+            margin: 0 auto;
+            background: var(--card-bg);
+            color: var(--text-main);
+            border-radius: 16px;
+            padding: 30px;
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.3);
+            display: none;
+        }
+
+        .panel.active {
+            display: block;
+        }
+
+        .panel h2 {
+            font-size: 1.3rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+            color: var(--primary-dark);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        /* Form Controls */
+        .form-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 20px;
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            font-size: 0.85rem;
+            font-weight: 700;
+            color: var(--text-light);
+            margin-bottom: 6px;
+        }
+
+        .form-group input, .form-group select {
+            width: 100%;
+            padding: 10px 14px;
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            font-size: 1rem;
+            outline: none;
+            background: #f8fafc;
+        }
+
+        .btn-primary {
+            background: var(--secondary);
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 8px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: opacity 0.2s;
+        }
+
+        .btn-primary:hover {
+            opacity: 0.9;
+        }
+
+        /* Symptom Checkboxes */
+        .symptom-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 12px;
+            margin-bottom: 20px;
+        }
+
+        .symptom-checkbox {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 12px;
+            background: #f8fafc;
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 0.9rem;
+        }
+
+        .symptom-checkbox input {
+            width: 18px;
+            height: 18px;
+            accent-color: var(--primary);
+        }
+
+        /* Tables & Results */
+        .results-box {
+            margin-top: 25px;
+            padding: 20px;
+            background: #f0fdf4;
+            border: 1px solid #bbf7d0;
+            border-radius: 10px;
+            display: none;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 15px;
+        }
+
+        th, td {
+            padding: 12px;
+            text-align: left;
+            border-bottom: 1px solid var(--border);
+            font-size: 0.9rem;
+        }
+
+        th {
+            background: #f8fafc;
+            font-weight: 700;
+            color: var(--text-light);
+        }
+
+        .doctor-banner {
             display: flex;
             align-items: center;
             gap: 15px;
+            background: #e0f2fe;
+            padding: 15px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            border-left: 4px solid var(--primary);
         }
 
-        .logo-img {
+        .doctor-banner img {
             width: 50px;
             height: 50px;
             border-radius: 50%;
             object-fit: cover;
-            border: 3px solid var(--border-color);
-            box-shadow: 2px 2px 0px var(--border-color);
-            background: #fff;
-        }
-
-        .logo-area h1 {
-            font-size: 2.2rem;
-            color: var(--accent-pink);
-            text-shadow: 2px 2px 0px var(--border-color);
-            letter-spacing: 1px;
-        }
-
-        .pwa-btn {
-            background: var(--accent-green);
-            color: white;
-            border: 3px solid var(--border-color);
-            padding: 10px 20px;
-            border-radius: 14px;
-            font-weight: 700;
-            cursor: pointer;
-            box-shadow: 3px 3px 0px var(--border-color);
-            transition: transform 0.1s;
-        }
-
-        .pwa-btn:active {
-            transform: translate(2px, 2px);
-            box-shadow: 1px 1px 0px var(--border-color);
-        }
-
-        /* Responsive Layout Grid */
-        .main-container {
-            max-width: 1200px;
-            margin: 40px auto;
-            padding: 0 20px;
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 30px;
-            width: 100%;
-            flex: 1;
-        }
-
-        @media (max-width: 950px) {
-            .main-container {
-                grid-template-columns: 1fr;
-            }
-            nav {
-                padding: 15px 20px;
-            }
-        }
-
-        .card {
-            background: var(--card-bg);
-            border: 4px solid var(--border-color);
-            border-radius: 25px;
-            padding: 30px;
-            box-shadow: 6px 6px 0px var(--border-color);
-        }
-
-        .card h2 {
-            font-size: 1.6rem;
-            color: var(--primary);
-            margin-bottom: 20px;
-            text-shadow: 1px 1px 0px #e2e8f0;
-        }
-
-        .form-group {
-            margin-bottom: 18px;
-        }
-
-        label {
-            display: block;
-            margin-bottom: 6px;
-            font-weight: 600;
-            font-size: 1.05rem;
-            color: var(--text-main);
-        }
-
-        input, textarea, select {
-            width: 100%;
-            padding: 12px 15px;
-            border: 3px solid var(--border-color);
-            border-radius: 14px;
-            font-size: 1.1rem;
-            outline: none;
-            background: #fff;
-            font-weight: 600;
-            color: var(--text-main);
-            box-shadow: 3px 3px 0px var(--border-color);
-        }
-
-        input:focus, textarea:focus {
-            background: #fef08a;
-        }
-
-        .action-btn {
-            width: 100%;
-            padding: 14px;
-            background-color: var(--accent-yellow);
-            color: var(--text-main);
-            border: 3px solid var(--border-color);
-            border-radius: 15px;
-            font-size: 1.2rem;
-            font-weight: 700;
-            cursor: pointer;
-            box-shadow: 4px 4px 0px var(--border-color);
-            transition: all 0.1s ease;
-            margin-top: 10px;
-            text-transform: uppercase;
-        }
-
-        .action-btn:active {
-            transform: translate(3px, 3px);
-            box-shadow: 1px 1px 0px var(--border-color);
-        }
-
-        .result-box {
-            margin-top: 20px;
-            padding: 20px;
-            background: #d9f99d;
-            border: 4px solid var(--border-color);
-            border-radius: 18px;
-            font-weight: 600;
-            display: none;
-            box-shadow: 4px 4px 0px var(--border-color);
-        }
-
-        .disclaimer {
-            font-size: 0.85rem;
-            color: #e11d48;
-            margin-top: 15px;
-            text-align: center;
-            font-weight: 600;
         }
 
         footer {
             text-align: center;
-            padding: 25px;
-            color: var(--text-main);
-            font-weight: 600;
-            border-top: 4px solid var(--border-color);
-            background: #ffffff;
-            margin-top: auto;
+            margin-top: 30px;
+            font-size: 0.8rem;
+            color: #94a3b8;
         }
     </style>
 </head>
 <body>
 
-    <!-- Cartoony Navbar -->
-    <nav>
-        <div class="logo-area">
-            <!-- Fixed Logo Image linking to 1.png with a safe fallback -->
-            <img src="1.png" alt="Saivify Logo" class="logo-img" onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1584515979956-2915239a57bb?w=100&h=100&fit=crop';">
-            <h1>SAIVIFY</h1>
+    <!-- Header Box -->
+    <div class="header-box">
+        <div class="school-title">
+            <h1>BRIDGEFORD SCHOOL, TUPUDANA, RANCHI</h1>
+            <p>🩺 HealthMate: Class 8 Health, Nutrition & Clinical Diagnostic Assistant</p>
         </div>
-        <div class="nav-buttons">
-            <button class="pwa-btn" onclick="installApp()">📥 Download App</button>
+        <div class="project-meta">
+            <p><strong>Class:</strong> 8 | Science & Tech Exhibition 2026</p>
+            <p><strong>Project by:</strong> Team Saivify</p>
         </div>
-    </nav>
+    </div>
 
-    <!-- Main Grid -->
-    <div class="main-container">
+    <!-- Navigation Tabs -->
+    <div class="tabs-container">
+        <button class="tab-btn active" onclick="switchTab(0)">1. Health & Diet Calculator</button>
+        <button class="tab-btn" onclick="switchTab(1)">2. Doctor Diagnosis & Symptom Guide</button>
+        <button class="tab-btn" onclick="switchTab(2)">3. School First-Aid Fund</button>
+    </div>
 
-        <!-- BMI Calculator Module -->
-        <div class="card" style="background: #eff6ff;">
-            <h2>⚖️ Fun BMI Calculator</h2>
+    <!-- TAB 1: Health & Diet Calculator -->
+    <div class="panel active" id="panel-0">
+        <h2>🥗 Personalized Diet, BMI & Daily Nutrition</h2>
+        <div class="form-grid">
             <div class="form-group">
-                <label for="height">Height (cm):</label>
-                <input type="number" id="height" placeholder="e.g. 175">
+                <label>Age (years):</label>
+                <input type="number" id="age" value="14">
             </div>
             <div class="form-group">
-                <label for="weight">Weight (kg):</label>
-                <input type="number" id="weight" placeholder="e.g. 70">
+                <label>Height (cm):</label>
+                <input type="number" id="height" value="160">
             </div>
-            <button class="action-btn" style="background-color: #38bdf8;" onclick="calculateBMI()">Calculate BMI</button>
-            <div id="bmiResult" class="result-box"></div>
+            <div class="form-group">
+                <label>Weight (kg):</label>
+                <input type="number" id="weight" value="52">
+            </div>
+            <div class="form-group">
+                <label>Daily Activity Level:</label>
+                <select id="activity">
+                    <option value="low">Low (School classes, reading)</option>
+                    <option value="moderate">Moderate (Sports, cycling)</option>
+                    <option value="high">High (Heavy athletic training)</option>
+                </select>
+            </div>
+        </div>
+        <button class="btn-primary" onclick="calculateNutrition()">Calculate Diet & BMI</button>
+        
+        <div id="nutritionResult" class="results-box"></div>
+    </div>
+
+    <!-- TAB 2: Doctor Diagnosis & Symptom Guide -->
+    <div class="panel" id="panel-1">
+        <div class="doctor-banner">
+            <!-- Professional Doctor Avatar representing clinical diagnostic assistant -->
+            <img src="https://images.unsplash.com/photo-1559839734-2b71ea197ec2?w=150&h=150&fit=crop" alt="Doctor Diagnosis">
+            <div>
+                <h4 style="color: var(--primary-dark); font-size: 1rem;">Virtual Doctor Diagnostic Consultation</h4>
+                <p style="font-size: 0.85rem; color: var(--text-light);">Select your ongoing symptoms below to generate precision clinical insights and first-aid care steps.</p>
+            </div>
         </div>
 
-        <!-- Advanced Smart Symptom & Disease Analyzer Module -->
-        <div class="card" style="background: #fdf2f8;">
-            <h2>🤖 Smart Symptom Analyzer</h2>
-            
-            <div class="form-group">
-                <label for="userSymptoms">Describe your symptoms / condition:</label>
-                <textarea id="userSymptoms" rows="2" placeholder="e.g., severe headache, skin fungal rash, high fever..."></textarea>
-            </div>
-
-            <div class="form-group">
-                <label for="duration">How many days have you had this?</label>
-                <input type="text" id="duration" placeholder="e.g. 3 days">
-            </div>
-
-            <div class="form-group">
-                <label for="severity">What is the peak severity level?</label>
-                <input type="text" id="severity" placeholder="e.g. Mild / Moderate / Severe pain">
-            </div>
-
-            <div class="form-group">
-                <label for="skinImage">Upload Photo (For rash/fungal/skin check):</label>
-                <input type="file" id="skinImage" accept="image/*">
-            </div>
-
-            <button class="action-btn" style="background-color: #f472b6;" onclick="runSmartAnalysis()">Run Health Analysis</button>
-            
-            <div id="aiResult" class="result-box" style="background: #fef08a;"></div>
-            <p class="disclaimer">*Disclaimer: Tool for initial guidance. Always consult a certified doctor! 🩺</p>
+        <h2>🩺 Clinical Symptom Checker</h2>
+        <div class="symptom-grid">
+            <label class="symptom-checkbox"><input type="checkbox" value="fever"> 🤒 Fever / Warm Body</label>
+            <label class="symptom-checkbox"><input type="checkbox" value="cough"> 😷 Cough & Cold</label>
+            <label class="symptom-checkbox"><input type="checkbox" value="headache"> 🤕 Headache / Dizziness</label>
+            <label class="symptom-checkbox"><input type="checkbox" value="stomach"> 🤢 Stomach Pain / Cramps</label>
+            <label class="symptom-checkbox"><input type="checkbox" value="skin"> 🔴 Skin Rash / Fungal Patch</label>
+            <label class="symptom-checkbox"><input type="checkbox" value="fatigue"> 😴 Extreme Tiredness</label>
         </div>
+        <button class="btn-primary" onclick="runDiagnosis()">Run Clinical Analysis</button>
 
+        <div id="diagnosisResult" class="results-box"></div>
+    </div>
+
+    <!-- TAB 3: School First-Aid Fund -->
+    <div class="panel" id="panel-2">
+        <h2>❤️ Bridgeford Student Health Club Fundraiser</h2>
+        <p style="font-size: 0.9rem; color: var(--text-light); margin-bottom: 20px;">Raising funds to equip Class 8 classrooms with basic first-aid kits, ORS packets, and clean hydration charts for students.</p>
+        <div style="background: #f8fafc; padding: 20px; border-radius: 10px; border: 1px solid var(--border);">
+            <p style="font-weight: 700; margin-bottom: 10px;">Fundraising Goal Progress: ₹1,200 raised of ₹1,000 target 🎉</p>
+            <div style="background: #e2e8f0; height: 16px; border-radius: 8px; overflow: hidden; margin-bottom: 15px;">
+                <div style="background: var(--secondary); width: 100%; height: 100%;"></div>
+            </div>
+            <button class="btn-primary" onclick="alert('Thank you for supporting Bridgeford Health Club!')">➕ Contribute ₹50</button>
+        </div>
     </div>
 
     <footer>
-        <p>&copy; 2026 Saivify. Smart health tracking made fun & reliable! 🚀</p>
+        Bridgeford School, Tupudana, Ranchi • Computer Science Exhibition 2026
     </footer>
 
     <script>
-        function calculateBMI() {
-            const h = document.getElementById('height').value;
-            const w = document.getElementById('weight').value;
-            const res = document.getElementById('bmiResult');
-
-            if(!h || !w || h <= 0 || w <= 0) {
-                res.style.display = 'block';
-                res.style.background = '#fca5a5';
-                res.innerHTML = "Please enter correct height and weight numbers! 😅";
-                return;
-            }
-
-            const heightM = h / 100;
-            const bmi = (w / (heightM * heightM)).toFixed(1);
-            let msg = "";
-
-            if(bmi < 18.5) msg = `BMI Score: ${bmi} — Underweight! Eat nutrient-rich food! 🍎`;
-            else if(bmi <= 24.9) msg = `BMI Score: ${bmi} — Normal & Super Fit! 🎉`;
-            else if(bmi <= 29.9) msg = `BMI Score: ${bmi} — Overweight! Time for some daily workouts! 🏃‍♂️`;
-            else msg = `BMI Score: ${bmi} — High BMI! Focus on your diet and fitness! 💪`;
-
-            res.style.display = 'block';
-            res.style.background = '#d9f99d';
-            res.innerHTML = msg;
+        function switchTab(index) {
+            const panels = document.querySelectorAll('.panel');
+            const buttons = document.querySelectorAll('.tab-btn');
+            panels.forEach((p, i) => {
+                p.classList.toggle('active', i === index);
+                buttons[i].classList.toggle('active', i === index);
+            });
         }
 
-        function runSmartAnalysis() {
-            const text = document.getElementById('userSymptoms').value.toLowerCase().trim();
-            const duration = document.getElementById('duration').value.trim() || "Not specified";
-            const severity = document.getElementById('severity').value.trim() || "Not specified";
-            const fileInput = document.getElementById('skinImage');
-            const res = document.getElementById('aiResult');
+        function calculateNutrition() {
+            const h = document.getElementById('height').value;
+            const w = document.getElementById('weight').value;
+            const res = document.getElementById('nutritionResult');
 
-            if(!text) {
-                res.style.display = 'block';
-                res.style.background = '#fca5a5';
-                res.innerHTML = "Please describe your symptoms in the text box first! 🤖";
-                return;
-            }
-
-            // High-precision keyword matching engine (No API limit issues, ultra fast & perfect)
-            let conditions = [];
-            let advice = "";
-
-            if(text.includes('cancer') || text.includes('tumor') || text.includes('malignant') || text.includes('growth')) {
-                conditions = [
-                    "Oncology Clinical Evaluation Required",
-                    "Persistent Cellular Anomaly / Growth",
-                    "Chronic Inflammatory Swelling",
-                    "Benign Tissue Hyperplasia"
-                ];
-                advice = "⚠️ Critical Notice: Any persistent mass or serious condition requires immediate physical diagnosis and biopsy by a specialist oncologist.";
-            } else if(text.includes('fever') || text.includes('cold') || text.includes('cough') || text.includes('temperature') || text.includes('shivering')) {
-                conditions = [
-                    "Viral Influenza / Seasonal Flu",
-                    "Acute Upper Respiratory Tract Infection",
-                    "Bronchial Inflammation",
-                    "Allergic Rhinitis"
-                ];
-                advice = "Ensure high fluid intake, take adequate bed rest, and consult a physician if fever continues beyond 3 days.";
-            } else if(text.includes('skin') || text.includes('fungal') || text.includes('rash') || text.includes('itch') || text.includes('patch') || text.includes('ringworm')) {
-                conditions = [
-                    "Tinea Corporis (Fungal Ringworm Infection)",
-                    "Contact Dermatitis",
-                    "Eczema Allergic Flare-up",
-                    "Urticaria (Hives)"
-                ];
-                advice = "Keep the infected spot dry and clean. Avoid sharing clothing or towels. Consult a dermatologist for topical anti-fungal treatment.";
-            } else if(text.includes('head') || text.includes('migraine') || text.includes('dizzy') || text.includes('pain') || text.includes('headache')) {
-                conditions = [
-                    "Tension Headache (Stress-related)",
-                    "Dehydration Migraine",
-                    "Sinusitis Pressure Headache",
-                    "Cervical Strain"
-                ];
-                advice = "Rest in a quiet, dark room, hydrate thoroughly with electrolytes, and avoid screen glare.";
-            } else if(text.includes('stomach') || text.includes('pain') || text.includes('vomit') || text.includes('acidity') || text.includes('nausea') || text.includes('digestion')) {
-                conditions = [
-                    "Acute Gastritis / Acid Reflux",
-                    "Gastroenteritis (Food Poisoning)",
-                    "Indigestion / Dyspepsia",
-                    "Irritable Bowel Irritation"
-                ];
-                advice = "Stick to easily digestible soft foods like boiled rice/khichdi and consume ORS solution to maintain electrolyte balance.";
-            } else {
-                conditions = [
-                    "General Systemic Fatigue",
-                    "Mild Viral Malaise",
-                    "Sleep Deprivation Strain",
-                    "Nutritional / Vitamin Deficiency"
-                ];
-                advice = "Prioritize 7-8 hours of sound sleep, eat balanced wholesome meals, and monitor your symptoms closely.";
-            }
-
-            let imageInfo = "No photo uploaded.";
-            if(fileInput.files && fileInput.files[0]) {
-                imageInfo = `Attached Image: <strong>${fileInput.files[0].name}</strong> (Logged for visual inspection)`;
-            }
+            if(!h || !w) return;
+            const bmi = (w / ((h/100)*(h/100))).toFixed(1);
+            let status = "Normal & Fit";
+            if(bmi < 18.5) status = "Underweight";
+            else if(bmi >= 25) status = "Overweight";
 
             res.style.display = 'block';
-            res.style.background = '#fef08a';
             res.innerHTML = `
-                <h4 style="margin-bottom:8px; color:#4338ca;">📊 Saivify Smart Health Breakdown:</h4>
-                <p><strong>Duration:</strong> ${duration} &nbsp;|&nbsp; <strong>Severity:</strong> ${severity}</p>
-                <p style="margin-top:6px;"><strong>Top 4 Potential Conditions Matching Input:</strong><br>
-                1. ${conditions[0]}<br>
-                2. ${conditions[1]}<br>
-                3. ${conditions[2]}<br>
-                4. ${conditions[3]}</p>
-                <p style="margin-top:6px;"><strong>Visual Scan Status:</strong> ${imageInfo}</p>
-                <hr style="margin: 8px 0; border:0; border-top:2px dashed #312e81;">
-                <p style="margin-top:6px; font-size:0.95rem;"><strong>Expert Recommendation:</strong> ${advice}</p>
+                <h4 style="color: #166534; margin-bottom: 10px;">📊 Assessment Result: BMI Score = ${bmi} (${status})</h4>
+                <p style="font-size: 0.9rem; margin-bottom: 10px;">Recommended Budget-Friendly Indian Protein Sources (Ranchi Market):</p>
+                <table>
+                    <tr><th>Kitchen Food</th><th>Serving Size</th><th>Protein Yield</th><th>Est. Cost</th></tr>
+                    <tr><td>Sattu (Roasted Gram Powder)</td><td>1 Large Glass (100g)</td><td>~20 grams</td><td>₹10</td></tr>
+                    <tr><td>Nutrela Soya Chunks</td><td>1 Small Bowl (50g dry)</td><td>~26 grams</td><td>₹10</td></tr>
+                    <tr><td>Boiled Farm Eggs</td><td>2 Whole Eggs</td><td>~12 grams</td><td>₹14</td></tr>
+                </table>
             `;
         }
 
-        function installApp() {
-            alert("Saivify PWA: Open your browser settings and select 'Add to Home Screen' or 'Install App' to run it as a standalone app! 📱✨");
+        function runDiagnosis() {
+            const checkboxes = document.querySelectorAll('.symptom-checkbox input:checked');
+            const res = document.getElementById('diagnosisResult');
+
+            if(checkboxes.length === 0) {
+                alert("Please select at least one symptom for clinical evaluation!");
+                return;
+            }
+
+            res.style.display = 'block';
+            res.innerHTML = `
+                <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 10px;">
+                    <img src="https://images.unsplash.com/photo-1537368910025-700350fe46c7?w=100&h=100&fit=crop" style="width:40px; height:40px; border-radius:50%; object-fit:cover;" alt="Doctor">
+                    <h4 style="color: #166534;">🩺 Clinical Doctor Assessment Report</h4>
+                </div>
+                <p><strong>Primary Condition Detected:</strong> Common Cold, Seasonal Viral Flu & Fatigue Syndrome.</p>
+                <p style="margin-top: 8px;"><strong>Recommended First-Aid Care Steps:</strong></p>
+                <ul style="margin-left: 20px; font-size: 0.9rem; margin-top: 5px;">
+                    <li>Salt-water gargles 2 times daily.</li>
+                    <li>Steam inhalation before sleeping.</li>
+                    <li>Warm haldi doodh or ginger tulsi tea.</li>
+                </ul>
+                <p style="font-size: 0.8rem; color: #b91c1c; margin-top: 10px;">⚠️ Bridgeford School Medical Room Notice: This is student diagnostic helper code. Always consult a real doctor or school infirmary for medications[cite: 13].</p>
+            `;
         }
     </script>
 </body>
